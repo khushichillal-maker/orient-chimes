@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Wind Chime Experience</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="canvas-container">
+        
+        <button id="prev-btn" class="nav-arrow arrow-left" title="Previous Country">&larr;</button>
+        <button id="next-btn" class="nav-arrow arrow-right" title="Next Country">&rarr;</button>
+
+        <section class="interactive-stage">
+            <div class="chime-wrapper">
+                <div class="roof-container">
+                    <img id="roof-image" src="china-roof.png" alt="Traditional Architectural Structure">
+                </div>
+                <div id="chime-stage"></div>
+            </div>
+        </section>
+
+        <section class="editorial-headline">
+            <h1 id="country-title">China —<br></h1>
+        </section>
+
+        <section class="editorial-subtext">
+            <p id="country-desc">Woven together by binding stories older than the ties that try to hold them.</p>
+        </section>
+
+        <nav class="country-navigation">
+            <button class="nav-dot active" data-country="china" title="China"></button>
+            <button class="nav-dot" data-country="india" title="India"></button>
+            <button class="nav-dot" data-country="indonesia" title="Indonesia"></button>
+            <button class="nav-dot" data-country="thailand" title="Thailand"></button>
+            <button class="nav-dot" data-country="korea" title="Korea"></button>
+            <button class="nav-dot" data-country="japan" title="Japan"></button>
+        </nav>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
