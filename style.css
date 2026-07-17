@@ -1,0 +1,225 @@
+/* Core Reset and Layout Guardrails */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+body {
+    background-color: #faecd7; 
+    font-family: 'Georgia', serif;
+    color: #2c251e;
+    overflow: hidden;
+    height: 100vh;
+    overscroll-behavior-y: contain;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.canvas-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 20px 15px;
+}
+
+/* 📥 SAFE TOP-ANCHORED EDITORIAL TEXT BLOCK */
+.editorial-headline {
+    position: absolute;
+    top: 40px; /* Securely fixed at the top of the viewport */
+    left: 20px;
+    right: 20px;
+    max-width: calc(100% - 40px);
+    z-index: 10;
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.editorial-headline h1 {
+    font-size: min(2rem, 6.5vw); /* Responsive formatting sizing scaling */
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: -0.5px;
+    color: #2b2520;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Afternoon/Morning/Evening line secure layout placement */
+.editorial-headline p {
+    font-size: min(0.75rem, 2.8vw);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    font-style: italic;
+    color: #8c2222;
+    line-height: 1.3;
+    max-width: 100%;
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+/* Main description block cleanly appended directly below headings */
+.editorial-subtext {
+    position: relative;
+    margin-top: 4px;
+    width: 100%;
+    pointer-events: none;
+}
+
+.editorial-subtext p {
+    font-size: min(0.7rem, 2.5vw);
+    line-height: 1.3;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    opacity: 0.5;
+    transition: opacity 0.4s ease;
+}
+
+/* 🎐 LOWER INTERACTIVE STAGE GRID RENDERER */
+.interactive-stage {
+    position: absolute;
+    bottom: 90px; /* Anchored securely lower down to clear top texts */
+    left: 50%; 
+    transform: translateX(-50%);
+    width: 100%;
+    max-width: 650px;
+    padding: 0 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.chime-wrapper {
+    position: relative;
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    width: 100%; 
+}
+
+.roof-container {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    filter: drop-shadow(15px 20px 10px rgba(40, 30, 20, 0.15));
+}
+
+.roof-container img {
+    width: 100%;
+    max-width: min(380px, 80vw); /* Keeps graphic sizes small on phone screens */
+    height: auto;
+    object-fit: contain;
+    mix-blend-mode: multiply; 
+    opacity: 0.98;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#chime-stage {
+    position: relative;
+    width: 100%;
+    height: clamp(200px, 32vh, 320px); /* Keeps hanging canvas small and tidy */
+    margin-top: -5px;
+    z-index: 2;
+    overflow: visible;
+}
+
+.chime-char {
+    position: absolute;
+    font-size: min(1rem, 3.8vw); 
+    line-height: 1.1;    
+    opacity: 0;
+    color: #363029;      
+    display: inline-block;
+    will-change: transform, opacity;
+    transform-origin: center top;
+    transition: color 0.4s ease, opacity 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Navigation Layout Adapters */
+.nav-arrow {
+    position: absolute;
+    bottom: 30px; /* Brought down next to the navigation dots */
+    background: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: 2.2rem;
+    color: #2c251e;
+    opacity: 0.3;
+    cursor: pointer;
+    padding: 15px; 
+    z-index: 20;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.arrow-left { left: 10px; }
+.arrow-right { right: 10px; }
+
+.country-navigation {
+    position: absolute;
+    bottom: 45px;
+    left: 50%; 
+    transform: translateX(-50%); /* Centers dots at the bottom of the canvas */
+    display: flex;
+    flex-direction: row;
+    gap: 12px;
+    z-index: 10;
+}
+
+.nav-dot {
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    border: 1.5px solid #2c251e;
+    background: transparent;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+    transition: all 0.3s ease;
+}
+
+.nav-dot.active {
+    background-color: #2c251e;
+    transform: scale(1.2);
+}
+
+/* 💻 RESPONSIVE DESKTOP RESET OVERRIDES */
+@media (min-width: 769px) {
+    .editorial-headline {
+        top: 45%;
+        left: 6%;
+        max-width: 360px;
+        transform: translateY(-50%);
+    }
+    .editorial-headline h1 { font-size: 3.2rem; }
+    .editorial-headline p { font-size: 0.8rem; }
+    .editorial-subtext { position: absolute; bottom: 80px; right: 8%; left: auto; max-width: 260px; margin-top: 0; }
+    .editorial-subtext p { font-size: 0.85rem; }
+    .interactive-stage { top: 48%; bottom: auto; left: 54%; transform: translate(-50%, -50%); max-width: 700px; padding: 0; }
+    #chime-stage { height: 360px; }
+    .chime-char { font-size: 1.1rem; }
+    .nav-arrow { font-size: 2.2rem; padding: 20px; top: 50%; bottom: auto; }
+    .arrow-left { left: 20px; }
+    .arrow-right { right: 20px; }
+    .country-navigation { bottom: 45px; left: 6%; transform: none; gap: 14px; }
+    .nav-dot { width: 10px; height: 10px; }
+}
+/* target laptops specifically */
+@media (min-width: 769px) {
+    /* Force the woven sentence container to the bottom right of the screen */
+    .canvas-container .editorial-subtext {
+        position: absolute !important;
+        bottom: 80px !important;
+        right: 8 !important;
+        left: auto !important;
+        max-width: 260px !important;
+        text-align: left !important;
+        z-index: 100 !important;
+    }
+}
